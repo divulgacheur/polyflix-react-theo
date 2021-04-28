@@ -3,18 +3,18 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { PolyflixModule } from './polyflix/polyflix.module';
-import { UsersService } from './users/users.service';
-import { UsersModule } from './users/users.module';
+import { UserService } from './users/user.service';
+import { UserModule } from './users/user.module';
 import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
     MongooseModule.forRoot('mongodb://localhost/nest-blog-project', { useNewUrlParser: true }),
     PolyflixModule,
-    UsersModule,
+    UserModule,
     AuthModule,
   ],
   controllers: [AppController],
-  providers: [AppService, UsersService],
+  providers: [AppService],
 })
 export class AppModule {}

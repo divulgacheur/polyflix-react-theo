@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { withRouter, useHistory } from 'react-router-dom';
-import { useAuth0 } from '../../contexts/auth0-context';
 
 
 function Create(): JSX.Element {
 
   let history = useHistory();
-  const { user, getIdTokenClaims } = useAuth0();
+  const { user, getIdTokenClaims } = {user: {name:"theo"}, getIdTokenClaims:"RERFGR"}
 
   interface IValues {
     [key: string]: any;
@@ -45,13 +44,13 @@ function Create(): JSX.Element {
 
   const submitform = async (formData: {}) => {
     try {
-      const accessToken = await getIdTokenClaims();
+      const accessToken = await getIdTokenClaims;
       const response = await fetch(`${process.env.REACT_APP_SERVER_BASE_URL}/polyflix/movie`, {
         method: "post",
         headers: new Headers({
           "Content-Type": "application/json",
           "Accept": "application/json",
-          "authorization": `Bearer ${accessToken.__raw}`
+          "authorization": `Bearer ${accessToken}`
         }),
         body: JSON.stringify(formData)
       });

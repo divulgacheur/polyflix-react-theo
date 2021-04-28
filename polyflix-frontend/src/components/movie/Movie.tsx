@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router';
+import ReactPlayer from 'react-player'
+
 
 function Movie() {
 
@@ -13,7 +15,7 @@ function Movie() {
       const json = await response.json();
       setMovie(json);
     }
-    fetchData();
+    fetchData().then(r => console.log(r));
   }, [movieId]);
 
     return (
@@ -30,6 +32,8 @@ function Movie() {
                       <span>
                         <b>{movie.title}</b>
                       </span>
+
+                      <ReactPlayer url={movie.url} controls={true} width={1280} height={720}/>
                     </h3>
 
                     <p className="para">

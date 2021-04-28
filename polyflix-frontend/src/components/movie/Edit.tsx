@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
-import { useAuth0 } from '../../contexts/auth0-context';
 
 
 function Edit(): JSX.Element {
 
-  const { getIdTokenClaims } = useAuth0();
+  const { getIdTokenClaims } = { getIdTokenClaims:"RERFGR"}
 
   let history = useHistory();
   let { movieId: movieId } = useParams();
@@ -43,13 +42,13 @@ function Edit(): JSX.Element {
 
   const submitForm = async (): Promise<boolean> => {
     try {
-      const accessToken = await getIdTokenClaims();
+      const accessToken = getIdTokenClaims;
       const response = await fetch(`${process.env.REACT_APP_SERVER_BASE_URL}/polyflix/edit?movieID=${movieId}`, {
         method: "put",
         headers: new Headers({
           "Content-Type": "application/json",
           Accept: "application/json",
-          "authorization": `Bearer ${accessToken.__raw}`
+          "authorization": `Bearer ${accessToken}`
         }),
         body: JSON.stringify(values)
       });
